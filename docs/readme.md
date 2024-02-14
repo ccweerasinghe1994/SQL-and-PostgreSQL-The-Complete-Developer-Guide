@@ -61,3 +61,93 @@ INSERT INTO cities (name, country, population, area) VALUES ('Sao Paulo', 'Brazi
 | Delhi | India | 28514000 | 573 |
 | Shanghai | China | 25582000 | 6340 |
 | Sao Paulo | Brazil | 21650000 | 1521 |
+
+![alt text](image-22.png)
+
+![alt text](image-23.png)
+
+```sql
+SELECT C.name, C.population / C.area AS population_density
+FROM cities c;
+```
+
+![alt text](image-24.png)
+
+| name | population\_density |
+| :--- | :--- |
+| Tokyo | 17093 |
+| Delhi | 49762 |
+| Shanghai | 4035 |
+| Sao Paulo | 14234 |
+
+![alt text](image-25.png)
+
+```sql
+-- EXERCISE 2
+
+DROP TABLE IF EXISTS phones;
+
+CREATE TABLE phones
+(
+    name         TEXT,
+    manufacturer TEXT,
+    price        INTEGER,
+    units_sold   INTEGER
+);
+
+INSERT INTO phones (name, manufacturer, price, units_sold)
+VALUES ('Galaxy S8', 'Samsung', 720, 5000),
+       ('iPhone 7', 'Apple', 770, 10000),
+       ('Xperia XZ', 'Sony', 550, 3000),
+       ('U Ultra', 'HTC', 750, 1000),
+       ('G6', 'LG', 650, 2000);
+
+SELECT p.name, p.units_sold * p.price AS revenue
+FROM phones p;
+
+```
+
+| name | revenue |
+| :--- | :--- |
+| Galaxy S8 | 3600000 |
+| iPhone 7 | 7700000 |
+| Xperia XZ | 1650000 |
+| U Ultra | 750000 |
+| G6 | 1300000 |
+
+![alt text](image-26.png)
+
+![alt text](image-27.png)
+
+```sql
+SELECT c.name || ', ' || c.country
+FROM cities c;
+```
+
+| ?column? |
+| :--- |
+| Tokyo, Japan |
+| Delhi, India |
+| Shanghai, China |
+| Sao Paulo, Brazil |
+
+we can also use the concat function to achieve the same result
+
+```sql
+SELECT concat(c.name, ', ', c.country) as location
+FROM cities c;
+```
+
+we can use lower and upper functions to convert the string to lower and upper case
+
+```sql
+SELECT concat(upper(c.name), ', ', lower(c.country)) as location
+FROM cities c;
+```
+
+| location |
+| :--- |
+| TOKYO, japan |
+| DELHI, india |
+| SHANGHAI, china |
+| SAO PAULO, brazil |
